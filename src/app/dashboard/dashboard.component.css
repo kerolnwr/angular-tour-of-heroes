@@ -1,7 +1,10 @@
 /* DashboardComponent's private CSS styles */
 
-h2 {
+mat-card-title {
     text-align: center;
+    font-size: 24px;
+    font-family:'Times New Roman', Times, serif;
+    font-style: oblique;
   }
   
   .heroes-menu {
@@ -18,7 +21,7 @@ h2 {
     align-items: flex-start;
   }
   
-  a {
+  a, mat-card-actions {
     background-color: #3f525c;
     border-radius: 2px;
     padding: 1rem;

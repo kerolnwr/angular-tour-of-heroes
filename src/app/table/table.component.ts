@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { HEROES } from '../mock-heroes';
 
 @Component({
   selector: 'app-table',
@@ -12,34 +13,23 @@ export class TableComponent implements OnInit{
 
   heroes: Hero[] = [];
   displayedColumns: string[] = ['id', 'name'];
-  dataSource = HERO_DATA;
 
-  constructor(private heroService: HeroService) { }
+  
+
+  constructor(private heroService: HeroService) {}
 
   ngOnInit(): void {
     this.getHeroes();
+    console.log(this.heroes)
+    //console.log(this.dataSource)
   }
 
     getHeroes(): void {
     this.heroService.getHeroes()
-        .subscribe(heroes => this.heroes = heroes);
+        .subscribe(heroes => {this.heroes = heroes; console.log(this.heroes)});
+    
+    
   }
 }
 
-export interface HeroElement {
-  id: number;
-  name: string;
-}
 
-const HERO_DATA: HeroElement[] = [
-  { id: 11, name: 'Dr Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];

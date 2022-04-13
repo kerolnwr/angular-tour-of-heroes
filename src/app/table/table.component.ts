@@ -14,7 +14,6 @@ export class TableComponent implements OnInit{
   displayedColumns: string[] = ['id', 'name'];
   dataSource = HERO_DATA;
 
-
   constructor(private heroService: HeroService) { }
 
   ngOnInit(): void {

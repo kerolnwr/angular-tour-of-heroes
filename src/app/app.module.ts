@@ -15,7 +15,8 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { TableComponent } from './table/table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
-import { MatTable, MatTableModule } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import {MatExpansionModule} from '@angular/material/expansion'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatTable, MatTableModule } from '@angular/material/table';
     HttpClientModule,
     MatCardModule,
     MatTableModule,
+    MatExpansionModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

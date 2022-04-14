@@ -16,7 +16,8 @@ import { TableComponent } from './table/table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
-import {MatExpansionModule} from '@angular/material/expansion'
+import {MatExpansionModule} from '@angular/material/expansion';
+import { CaseComponent } from './case/case.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatExpansionModule} from '@angular/material/expansion'
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
-    TableComponent
+    TableComponent,
+    CaseComponent
   ],
   imports: [
     BrowserModule,

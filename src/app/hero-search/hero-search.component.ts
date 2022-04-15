@@ -9,6 +9,11 @@ import {
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
+//
+import {FormControl} from '@angular/forms';
+import {map, startWith} from 'rxjs/operators';
+//
+
 @Component({
   selector: 'app-hero-search',
   templateUrl: './hero-search.component.html',

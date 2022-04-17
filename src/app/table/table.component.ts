@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import { HEROES } from '../mock-heroes';
 
 @Component({
   selector: 'app-table',
@@ -20,13 +19,11 @@ export class TableComponent implements OnInit{
 
   ngOnInit(): void {
     this.getHeroes();
-    console.log(this.heroes)
-    //console.log(this.dataSource)
   }
 
     getHeroes(): void {
     this.heroService.getHeroes()
-        .subscribe(heroes => {this.heroes = heroes; console.log(this.heroes)});
+        .subscribe(heroes => {this.heroes = heroes});
     
     
   }

@@ -1,1 +1,103 @@
-<p>case works!</p>
+<form>
+    <div class = "body">
+        <h2>Create Case</h2>
+        <div class = "row">
+
+            
+            <div class = "column">
+
+                <label>Case Status</label>
+                <mat-select class="normal">
+                    <mat-option *ngFor="let stats of status" [value]="stats.value">
+                        {{stats.name}}
+                    </mat-option>
+                </mat-select>
+
+                <br>
+
+                <label>Case Title</label>
+                <input matInput value = "Billing-Account Maintenance" class="normal">
+
+                <br>
+
+                <label>Customer Name</label>
+                    <input matInput value="Ainon" class="normal">
+
+                <br>
+
+                <label>Bill Account No.</label>
+                <input matInput type="number" value="32200042566" class="normal">
+
+                <br>
+
+                <label>ID Type</label>
+                <input matInput class="normal">
+
+                <br>
+
+                <label>Customer ID</label>
+                <input matInput value="831230-23-4566" class="normal">
+                
+                <br>
+
+                <label>Case Source ID</label>
+                <mat-select class="normal">
+                        <mat-option *ngFor="let sos of source" [value]="sos.value">
+                            {{sos.name}}
+                        </mat-option>
+                </mat-select>
+
+                <br>
+                
+                <label>Service ID/NO</label>
+                <input matInput value="01165627899" class="normal">
+
+                <br>
+
+                <label>Next Best Action</label>
+                <mat-radio-group>
+                    <mat-radio-button value="1">Assurance (Fixed)</mat-radio-button>
+                    <mat-radio-button value="2">Bill</mat-radio-button>
+                    <mat-radio-button value="3">None</mat-radio-button>
+                </mat-radio-group>
+
+            </div>
+
+            <div class = "column">
+
+                <div class = "contact">
+                    
+                    <label>Contact Name</label>
+                    <input matInput value="Ainon" class="normal">
+
+                    <br>
+
+                    <label>Phone No.</label>
+                    <input matInput type="number" value="60182638681" class="normal">
+
+                    <br>
+
+                    <label>Email</label>
+                    <input matInput type="email" value="sitiaishah.ibrahim@tm.com.my" class="normal">
+                    <br>
+                    <mat-hint>Eg.pat@example.com</mat-hint>
+
+                </div>
+
+                <br>
+                <label>Description/Remark</label>
+                <input matInput type="text" class="description">
+
+                <br>
+
+                <label>Effective Date</label>
+                    
+                
+            </div>
+        </div>
+    </div>
+    
+    <button type="reset" value="submit">Clear</button>
+    <button type="submit" value="submit">Submit</button>
+</form>
+

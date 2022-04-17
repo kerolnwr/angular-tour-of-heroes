@@ -46,8 +46,6 @@ export class CaseComponent implements OnInit {
 
   status = caseStatusOpts;
   source = caseSourceOpts;
-  statusDef = 1;
-  sourceDef = 1;
 
   constructor() {
   }

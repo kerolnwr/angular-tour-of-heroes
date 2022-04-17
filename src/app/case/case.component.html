@@ -1,12 +1,15 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class = "body">
+    <div class = "container">
         <h2>Create Case</h2>
 
         <div class = "row">
 
             <div class = "column">
 
-                <label>Case Status</label>
+                <div class="col-25">
+                    <label>Case Status</label>
+                </div>
+                
                 <mat-select formControlName="caseStatus" class="normal">
                 <mat-error *ngIf="checkError('caseStatus', 'required')">*</mat-error> 
                     <mat-option *ngFor="let stats of status" [value]="stats.value">
@@ -16,37 +19,51 @@
 
                 <br>
 
-                <label>Case Title</label>
+                <div class="col-25">
+                    <label>Case Title</label>    
+                </div>
+
                 <input matInput formControlName="caseTitle" placeholder="Billing-Account Maintenance" class="normal">
                 <mat-error *ngIf="checkError('caseTitle', 'required')">*</mat-error>
-
+                
                 <br>
 
-                <label>Customer Name</label>
+                <div class="col-25"> 
+                    <label>Customer Name</label> 
+                </div>
+
                 <input matInput formControlName="custName" placeholder="Ainon" class="normal">
                 <mat-error *ngIf="checkError('custName', 'required')">*</mat-error>
 
                 <br>
 
-                <label>Bill Account No.</label>
+                <div class="col-25">
+                    <label>Bill Account No.</label>
+                </div>
                 <input matInput formControlName="billAcc" type="number" placeholder="32200042566" class="normal">
                 <mat-error *ngIf="checkError('billAcc', 'required')">*</mat-error>
 
                 <br>
 
-                <label>ID Type</label>
-                <input matInput formControlName="idType" class="normal">
+                <div class="col-25">
+                    <label>ID Type</label>
+                </div>
+                <input matInput formControlName="idType" placeholder="New NRIC" class="normal">
                 <mat-error *ngIf="checkError('idType', 'required')">*</mat-error>
 
                 <br>
 
-                <label>Customer ID</label>
+                <div class="col-25">
+                    <label>Customer ID</label>
+                </div>
                 <input matInput formControlName="custId" placeholder="831230-23-4566" class="normal">
                 <mat-error *ngIf="checkError('custId', 'required')">*</mat-error>
                 
                 <br>
 
-                <label>Case Source ID</label>
+                <div class="col-25">
+                    <label>Case Source ID</label>
+                </div>
                 <mat-select formControlName="caseId" class="normal">
                 <mat-error *ngIf="checkError('caseId', 'required')">*</mat-error>
                         <mat-option *ngFor="let sos of source" [value]="sos.value">
@@ -56,13 +73,17 @@
 
                 <br>
                 
-                <label>Service ID/NO</label>
+                <div class="col-25">
+                    <label>Service ID/NO</label>
+                </div>
                 <input matInput formControlName="serviceId" placeholder="01165627899" class="normal">
                 <mat-error *ngIf="checkError('serviceId', 'required')">*</mat-error>
 
                 <br>
 
-                <label>Next Best Action</label>
+                <div class="col-25">
+                    <label>Next Best Action</label>
+                </div>
                 <mat-radio-group formControlName="action">
                     <mat-radio-button value="1">Assurance (Fixed)</mat-radio-button>
                     <mat-radio-button value="2">Bill</mat-radio-button>
@@ -75,36 +96,46 @@
 
                 <div id = "contact">
                     
-                    <label>Contact Name</label>
+                    <div class="col-25">
+                        <label>Contact Name</label>
+                    </div>
                     <input matInput formControlName="name" placeholder="Ainon" class="normal">
                     <mat-error *ngIf="checkError('name', 'required')">*</mat-error>
 
                     <br>
 
-                    <label>Phone No.</label>
+                    <div class="col-25">
+                        <label>Phone No.</label>
+                    </div>
                     <input matInput type="number" formControlName="phone" placeholder="60182638681" class="normal" >
                     <mat-error *ngIf="checkError('phone', 'required')">*</mat-error>
 
                     <br>
 
-                    <mat-label>Email</mat-label>
+                    <div class="col-25">
+                        <label>Email</label>
+                    </div>
                     <input matInput formControlName="email" placeholder="sitiaishah.ibrahim@tm.com.my" class="normal">
-                    <mat-error *ngIf="checkError('email', 'email')">
-                        Please enter a valid email address
-                    </mat-error>
                     <mat-error *ngIf="checkError('email', 'required')">*</mat-error>
                     <br>
-                    <mat-hint>Eg. pat@example.com</mat-hint>
-
+                    <div class="emailtip">
+                        <mat-error *ngIf="checkError('email', 'email')">Please enter a valid email address</mat-error>
+                        <br>
+                        <mat-hint>Eg. pat@example.com</mat-hint>
+                    </div>
                 </div>
 
-                <label>Description/Remark</label>
+                <label id="desc">Description/Remark</label>
                 <mat-error *ngIf="checkError('description', 'required')">*</mat-error>
                 <br>
-                <textarea matInput type="text" formControlName="description" class="description"></textarea>                  
+                <textarea matInput type="text" #input maxlength="3000" formControlName="description" class="description"></textarea>
+                <br>
+                <mat-hint id="counter" align="end">{{input.value?.length || 0}}/3000 characters</mat-hint>                 
                 
                 <div id = "date">
-                    <label>Effective Date</label>
+                    <div class="col-15">
+                        <label>Effective Date</label>
+                    </div>    
                     <input [matDatepicker]="basicDatepicker" formControlName="date" class="small">
                     <mat-error *ngIf="checkError('date', 'required')">*</mat-error>
                     <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
@@ -114,8 +145,11 @@
             </div>
         </div>
     </div>
-    <button type="button" (click)=resetForm()>Clear</button>
-    <button type="submit" [disabled]="!form.valid">Submit</button>
+
+    <div class="buttons">
+        <button id="clear" type="button" (click)=resetForm()>Clear</button>
+        <button id="submit" type="submit" [disabled]="!form.valid">Submit</button>
+    </div>
     
 </form>
 

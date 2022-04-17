@@ -1,13 +1,14 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class = "body">
         <h2>Create Case</h2>
+
         <div class = "row">
 
-            
             <div class = "column">
 
                 <label>Case Status</label>
-                <mat-select class="normal">
+                <mat-select formControlName="caseStatus" class="normal">
+                <mat-error *ngIf="checkError('caseStatus', 'required')">*</mat-error> 
                     <mat-option *ngFor="let stats of status" [value]="stats.value">
                         {{stats.name}}
                     </mat-option>
@@ -16,32 +17,38 @@
                 <br>
 
                 <label>Case Title</label>
-                <input matInput value = "Billing-Account Maintenance" class="normal">
+                <input matInput formControlName="caseTitle" placeholder="Billing-Account Maintenance" class="normal">
+                <mat-error *ngIf="checkError('caseTitle', 'required')">*</mat-error>
 
                 <br>
 
                 <label>Customer Name</label>
-                    <input matInput value="Ainon" class="normal">
+                <input matInput formControlName="custName" placeholder="Ainon" class="normal">
+                <mat-error *ngIf="checkError('custName', 'required')">*</mat-error>
 
                 <br>
 
                 <label>Bill Account No.</label>
-                <input matInput type="number" value="32200042566" class="normal">
+                <input matInput formControlName="billAcc" type="number" placeholder="32200042566" class="normal">
+                <mat-error *ngIf="checkError('billAcc', 'required')">*</mat-error>
 
                 <br>
 
                 <label>ID Type</label>
-                <input matInput class="normal">
+                <input matInput formControlName="idType" class="normal">
+                <mat-error *ngIf="checkError('idType', 'required')">*</mat-error>
 
                 <br>
 
                 <label>Customer ID</label>
-                <input matInput value="831230-23-4566" class="normal">
+                <input matInput formControlName="custId" placeholder="831230-23-4566" class="normal">
+                <mat-error *ngIf="checkError('custId', 'required')">*</mat-error>
                 
                 <br>
 
                 <label>Case Source ID</label>
-                <mat-select class="normal">
+                <mat-select formControlName="caseId" class="normal">
+                <mat-error *ngIf="checkError('caseId', 'required')">*</mat-error>
                         <mat-option *ngFor="let sos of source" [value]="sos.value">
                             {{sos.name}}
                         </mat-option>
@@ -50,12 +57,13 @@
                 <br>
                 
                 <label>Service ID/NO</label>
-                <input matInput value="01165627899" class="normal">
+                <input matInput formControlName="serviceId" placeholder="01165627899" class="normal">
+                <mat-error *ngIf="checkError('serviceId', 'required')">*</mat-error>
 
                 <br>
 
                 <label>Next Best Action</label>
-                <mat-radio-group>
+                <mat-radio-group formControlName="action">
                     <mat-radio-button value="1">Assurance (Fixed)</mat-radio-button>
                     <mat-radio-button value="2">Bill</mat-radio-button>
                     <mat-radio-button value="3">None</mat-radio-button>
@@ -65,39 +73,49 @@
 
             <div class = "column">
 
-                <div class = "contact">
+                <div id = "contact">
                     
                     <label>Contact Name</label>
-                    <input matInput value="Ainon" class="normal">
+                    <input matInput formControlName="name" placeholder="Ainon" class="normal">
+                    <mat-error *ngIf="checkError('name', 'required')">*</mat-error>
 
                     <br>
 
                     <label>Phone No.</label>
-                    <input matInput type="number" value="60182638681" class="normal">
+                    <input matInput type="number" formControlName="phone" placeholder="60182638681" class="normal" >
+                    <mat-error *ngIf="checkError('phone', 'required')">*</mat-error>
 
                     <br>
 
-                    <label>Email</label>
-                    <input matInput type="email" value="sitiaishah.ibrahim@tm.com.my" class="normal">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="sitiaishah.ibrahim@tm.com.my" class="normal">
+                    <mat-error *ngIf="checkError('email', 'email')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="checkError('email', 'required')">*</mat-error>
                     <br>
-                    <mat-hint>Eg.pat@example.com</mat-hint>
+                    <mat-hint>Eg. pat@example.com</mat-hint>
 
                 </div>
 
-                <br>
                 <label>Description/Remark</label>
-                <input matInput type="text" class="description">
-
+                <mat-error *ngIf="checkError('description', 'required')">*</mat-error>
                 <br>
-
-                <label>Effective Date</label>
-                    
+                <textarea matInput type="text" formControlName="description" class="description"></textarea>                  
                 
+                <div id = "date">
+                    <label>Effective Date</label>
+                    <input [matDatepicker]="basicDatepicker" formControlName="date" class="small">
+                    <mat-error *ngIf="checkError('date', 'required')">*</mat-error>
+                    <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #basicDatepicker></mat-datepicker>
+                </div>
+
             </div>
         </div>
     </div>
+    <button type="button" (click)=resetForm()>Clear</button>
+    <button type="submit" [disabled]="!form.valid">Submit</button>
     
-    <button type="reset" value="submit">Clear</button>
-    <button type="submit" value="submit">Submit</button>
 </form>
 

@@ -1,30 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-case',
   templateUrl: './case.component.html',
-  styleUrls: ['./case.component.css']
+  styleUrls: ['./case.component.css'],
 })
+
 export class CaseComponent implements OnInit {
 
+  form = new FormGroup({
+    caseStatus : new FormControl(1, Validators.required),
+    caseTitle : new FormControl('', Validators.required),
+    custName : new FormControl('', Validators.required),
+    billAcc : new FormControl('', Validators.required),
+    idType : new FormControl(''),
+    custId : new FormControl('', Validators.required),
+    caseId : new FormControl(1, Validators.required),
+    serviceId : new FormControl('', Validators.required),
+    action : new FormControl('1'),
+    name : new FormControl('', Validators.required),
+    phone : new FormControl('', Validators.required),
+    email : new FormControl('', [Validators.required, Validators.email]),
+    description : new FormControl('', Validators.required),
+    date : new FormControl('', Validators.required),
+  });
+
+  public checkError = (controlName: string, errorName: string) => {
+    return this.form.controls[controlName].hasError(errorName);
+  }
+
+  resetForm(){
+    this.form.reset();
+    this.form.patchValue({
+      caseStatus : 1,
+      caseId : 1,
+      action : '1'
+    })
+  }
+
+  onSubmit() {
+    console.warn(this.form.value);
+    window.alert('The form has been submitted. Thank you!');
+  }
 
   status = caseStatusOpts;
   source = caseSourceOpts;
-  //caseStatus = new FormControl('New', Validators.required);
-  //statusDef = 1;
-  //caseTitle = new FormControl('Billing-Account Maintenance', Validators.required);
-  //custName = new FormControl('Ainon', Validators.required);
-  //billAcc = new FormControl('32200042566', Validators.required);
-  //idType = new FormControl('');
-  //custId = new FormControl('831230-23-4566', Validators.required);
-  //sourceId = new FormControl('Stellar CBS', Validators.required);
-  
-  //serviceId= new FormControl('01165627899', Validators.required);
-
-  //form: FormGroup = new FormGroup({});
+  statusDef = 1;
+  sourceDef = 1;
 
   constructor() {
   }
@@ -54,4 +77,7 @@ export const caseSourceOpts: DropdownValues[] = [
   { 'value': 7, 'name': 'HERO' },
   { 'value': 8, 'name': 'SPICE (RETEM)' },
 ];
+
+
+
 

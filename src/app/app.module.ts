@@ -25,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { MatInputModule } from '@angular/material/input';
     MatRadioModule,
     MatDatepickerModule,
     MatInputModule,
+    MatNativeDateModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

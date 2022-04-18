@@ -1,0 +1,155 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class = "container">
+        <h2>Create Case</h2>
+
+        <div class = "row">
+
+            <div class = "column">
+
+                <div class="col-25">
+                    <label>Case Status</label>
+                </div>
+                
+                <mat-select formControlName="caseStatus" class="normal" placeholder="New">
+                    <mat-option *ngFor="let stats of status" [value]="stats.value">
+                        {{stats.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="checkError('caseStatus', 'required')">*</mat-error>
+
+                <br>
+
+                <div class="col-25">
+                    <label>Case Title</label>    
+                </div>
+
+                <input matInput formControlName="caseTitle" placeholder="Billing-Account Maintenance" class="normal">
+                <mat-error *ngIf="checkError('caseTitle', 'required')">*</mat-error>
+                
+                <br>
+
+                <div class="col-25"> 
+                    <label>Customer Name</label> 
+                </div>
+
+                <input matInput formControlName="custName" placeholder="Ainon" class="normal">
+                <mat-error *ngIf="checkError('custName', 'required')">*</mat-error>
+
+                <br>
+
+                <div class="col-25">
+                    <label>Bill Account No.</label>
+                </div>
+                <input matInput formControlName="billAcc" type="number" placeholder="32200042566" class="normal">
+                <mat-error *ngIf="checkError('billAcc', 'required')">*</mat-error>
+
+                <br>
+
+                <div class="col-25">
+                    <label>ID Type</label>
+                </div>
+                <input matInput formControlName="idType" placeholder="New NRIC" class="normal">
+                <mat-error *ngIf="checkError('idType', 'required')">*</mat-error>
+
+                <br>
+
+                <div class="col-25">
+                    <label>Customer ID</label>
+                </div>
+                <input matInput formControlName="custId" placeholder="831230-23-4566" class="normal">
+                <mat-error *ngIf="checkError('custId', 'required')">*</mat-error>
+                
+                <br>
+
+                <div class="col-25">
+                    <label>Case Source ID</label>
+                </div>
+                <mat-select formControlName="caseId" class="normal" placeholder="Stellar CBS">
+                        <mat-option *ngFor="let sos of source" [value]="sos.value">
+                            {{sos.name}}
+                        </mat-option>
+                </mat-select>
+                <mat-error *ngIf="checkError('caseId', 'required')">*</mat-error>
+
+                <br>
+                
+                <div class="col-25">
+                    <label>Service ID/NO</label>
+                </div>
+                <input matInput formControlName="serviceId" placeholder="01165627899" class="normal">
+                <mat-error *ngIf="checkError('serviceId', 'required')">*</mat-error>
+
+                <br>
+
+                <div class="col-25">
+                    <label>Next Best Action</label>
+                </div>
+                <mat-radio-group formControlName="action">
+                    <mat-radio-button value="1">Assurance (Fixed)</mat-radio-button>
+                    <mat-radio-button value="2">Bill</mat-radio-button>
+                    <mat-radio-button value="3">None</mat-radio-button>
+                </mat-radio-group>
+
+            </div>
+
+            <div class = "column">
+
+                <div id = "contact">
+                    
+                    <div class="col-25">
+                        <label>Contact Name</label>
+                    </div>
+                    <input matInput formControlName="name" placeholder="Ainon" class="normal">
+                    <mat-error *ngIf="checkError('name', 'required')">*</mat-error>
+
+                    <br>
+
+                    <div class="col-25">
+                        <label>Phone No.</label>
+                    </div>
+                    <input matInput type="number" formControlName="phone" placeholder="60182638681" class="normal" >
+                    <mat-error *ngIf="checkError('phone', 'required')">*</mat-error>
+
+                    <br>
+
+                    <div class="col-25">
+                        <label>Email</label>
+                    </div>
+                    <input matInput formControlName="email" placeholder="sitiaishah.ibrahim@tm.com.my" class="normal">
+                    <mat-error *ngIf="checkError('email', 'required')">*</mat-error>
+                    <br>
+                    <div class="emailtip">
+                        <mat-error *ngIf="checkError('email', 'email')">Please enter a valid email address</mat-error>
+                        <br>
+                        <mat-hint>Eg. pat@example.com</mat-hint>
+                    </div>
+                </div>
+
+                <label id="desc">Description/Remark</label>
+                <mat-error *ngIf="checkError('description', 'required')">     *</mat-error>
+                <br>
+                <textarea matInput type="text" #input maxlength="3000" formControlName="description" class="description"></textarea>
+                <br>
+                <mat-hint id="counter" align="end">{{input.value?.length || 0}}/3000 characters</mat-hint>                 
+                
+                <div id = "date">
+                    <div class="col-15">
+                        <label>Effective Date</label>
+                    </div>    
+                    <input [matDatepicker]="basicDatepicker" formControlName="date" class="small">
+                    <mat-error *ngIf="checkError('date', 'required')">*</mat-error>
+                    <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #basicDatepicker></mat-datepicker>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button id="clear" type="button" (click)=resetForm()>Clear</button>
+        <button id="submit" type="submit" [disabled]="!form.valid">Submit</button>
+    </div>
+    
+</form>
+

@@ -10,13 +10,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class CaseComponent implements OnInit {
 
   form = new FormGroup({
-    caseStatus : new FormControl(1, Validators.required),
+    caseStatus : new FormControl('', Validators.required),
     caseTitle : new FormControl('', Validators.required),
     custName : new FormControl('', Validators.required),
     billAcc : new FormControl('', Validators.required),
     idType : new FormControl(''),
     custId : new FormControl('', Validators.required),
-    caseId : new FormControl(1, Validators.required),
+    caseId : new FormControl('', Validators.required),
     serviceId : new FormControl('', Validators.required),
     action : new FormControl('1'),
     name : new FormControl('', Validators.required),
@@ -33,8 +33,6 @@ export class CaseComponent implements OnInit {
   resetForm(){
     this.form.reset();
     this.form.patchValue({
-      caseStatus : 1,
-      caseId : 1,
       action : '1'
     })
   }

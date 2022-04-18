@@ -10,12 +10,12 @@
                     <label>Case Status</label>
                 </div>
                 
-                <mat-select formControlName="caseStatus" class="normal">
-                <mat-error *ngIf="checkError('caseStatus', 'required')">*</mat-error> 
+                <mat-select formControlName="caseStatus" class="normal" placeholder="New">
                     <mat-option *ngFor="let stats of status" [value]="stats.value">
                         {{stats.name}}
                     </mat-option>
                 </mat-select>
+                <mat-error *ngIf="checkError('caseStatus', 'required')">*</mat-error>
 
                 <br>
 
@@ -64,12 +64,12 @@
                 <div class="col-25">
                     <label>Case Source ID</label>
                 </div>
-                <mat-select formControlName="caseId" class="normal">
-                <mat-error *ngIf="checkError('caseId', 'required')">*</mat-error>
+                <mat-select formControlName="caseId" class="normal" placeholder="Stellar CBS">
                         <mat-option *ngFor="let sos of source" [value]="sos.value">
                             {{sos.name}}
                         </mat-option>
                 </mat-select>
+                <mat-error *ngIf="checkError('caseId', 'required')">*</mat-error>
 
                 <br>
                 
@@ -126,7 +126,7 @@
                 </div>
 
                 <label id="desc">Description/Remark</label>
-                <mat-error *ngIf="checkError('description', 'required')">*</mat-error>
+                <mat-error *ngIf="checkError('description', 'required')">     *</mat-error>
                 <br>
                 <textarea matInput type="text" #input maxlength="3000" formControlName="description" class="description"></textarea>
                 <br>
